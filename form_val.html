@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>FORM VALIDATION using JS</title>
+<link rel="stylesheet"  href="form_val.css"/>
+</head>
+<body>
+<h1 align="center">APPLICATION FORM VALIDATION EXAMPLE</h1>
+<br><br><br>
+<form>
+<div style="width:1300px; margin-left:auto; margin_right:auto">
+Name<input type="text" id="name" onkeyup="nameVer()"><span id="names" ></span><br><br>
+E-mail<input type="text" id="email" onkeyup="emailVer()"><span id="emails" ></span><br><br>
+Password<input type="password" id="password" onkeyup="passVer()"><span id="passwords" ></span><br><br>
+Roll no<input type="text" id="roll" onkeyup="rollVer()"><span id="rolls" ></span><br><br>
+Mobile<input type="text" id="mobile" onkeyup="mobileverification()"><span id="mobiles" ></span>
+<br><input type="submit" onClick="submitVer()">
+</div>
+</form>
+</body>
+
+<script type="text/javascript">
+f1=f2=f3=f4=f5=0;
+function display(x, y){
+		if(x==1)
+			document.getElementById(y).innerHTML="<span style=\" color:#00FF00\">ok</span>";
+		else
+			document.getElementById(y).innerHTML="<span style=\" color:#FF0000\">notok</span>";
+}
+function mobileverification()
+{var z="mobiles";
+var x=document.getElementById("mobile");
+if($.isNumeric(x.value)&&x.length!=0){
+		display(1,z);f1=1;
+		}		
+else{
+	display(0,z);f1=0;
+}
+}
+function emailVer(){
+		var y=document.getElementById("email");
+		y=y.value;
+		var atpos=y.indexOf("@"); var z="emails";
+		var dotpos=y.lastIndexOf(".");
+		if(atpos<1|| dotpos<atpos+3|| dotpos+3>y.length || y.length==0){
+				display(0,z);f2=0;
+		}
+		else{	
+			display(1,z);f2=1;
+		}
+}
+function nameVer()
+{
+var x=document.getElementById("name");
+if(x.length!=0){
+		display(1,"names");f3=1;
+		}		
+
+else{
+	display(0,"names");f3=0;
+}
+}
+
+function passVer()
+{
+var x=document.getElementById("password");
+x=x.value;
+if(x.length>5){
+		display(1,"passwords");f4=1;	
+		}		
+else{
+	display(0,"passwords");f4=0;
+}
+}
+function rollVer()
+{
+var x=document.getElementById("roll");
+x=x.value;
+if(x.length==9 || x.length==10){
+		display(1,"rolls");f5=1;
+		}		
+else{
+	display(0,"rolls");f5=0;
+}
+}
+function submitVer(){
+		if(f1 && f2 && f3 && f4 && f5)
+			alert("Correct!");
+		else
+			alert("Please correct the mistakes!");
+}
+</script>
+</html>
